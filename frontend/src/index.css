@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: Tahoma, 'Lucida Grande', Verdana, Arial, sans-serif;
+    color-scheme: light dark;
+  }
+  
+  body {
+    @apply font-sans bg-[#f0f2f5] dark:bg-[#0a0a0a] text-[#1c1e21] dark:text-[#e4e6eb] antialiased text-xs;
+    margin: 0;
+  }
+
+  /* Retro Facebook scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #e4e6eb;
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: #18191a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888888;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+  }
+}
+
+@layer components {
+  /* Classic Facebook Boxed Widget */
+  .glass-card, .fb-card {
+    @apply bg-white dark:bg-[#121212] border border-[#ccd0d5] dark:border-[#333333] rounded-[3px] shadow-[0_1px_2px_rgba(0,0,0,0.1)] transition-all;
+  }
+
+  .fb-card-header {
+    @apply bg-[#f5f6f7] dark:bg-[#1c1c1c] border-b border-[#ccd0d5] dark:border-[#333333] px-3 py-2 text-xs font-bold text-[#1c1e21] dark:text-white flex items-center justify-between;
+  }
+
+  /* Classic Retro Facebook Buttons */
+  .fb-btn-primary {
+    @apply bg-black hover:bg-neutral-800 text-white font-bold text-xs px-3 py-1.5 border border-black rounded-[2px] shadow-[1px_1px_0px_#444] cursor-pointer transition-all active:translate-y-0.5;
+  }
+
+  .fb-btn-secondary {
+    @apply bg-white hover:bg-neutral-100 dark:bg-[#222222] dark:hover:bg-[#2e2e2e] text-black dark:text-white font-bold text-xs px-3 py-1.5 border border-neutral-400 dark:border-neutral-600 rounded-[2px] shadow-[1px_1px_0px_#ccc] dark:shadow-none cursor-pointer transition-all active:translate-y-0.5;
+  }
+
+  /* Classic Link */
+  .fb-link {
+    @apply text-black dark:text-white hover:underline cursor-pointer font-bold;
+  }
+}
+
+@layer utilities {
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(220, 220, 220, 0.6) 25%,
+      rgba(240, 240, 240, 0.9) 50%,
+      rgba(220, 220, 220, 0.6) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  .dark .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(30, 30, 30, 0.6) 25%,
+      rgba(50, 50, 50, 0.9) 50%,
+      rgba(30, 30, 30, 0.6) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shrinkWidth {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Remove default number input arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Print optimizations */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-card {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    background: white !important;
+    page-break-inside: avoid;
+  }
+}
